@@ -10,7 +10,7 @@ import java.util.List;
         TipoTransacao.EXTRATO_ULTIMOS_LANCAMENTOS,
         TipoTransacao.EXTRATO_POR_PERIODO
 })
-public class AutorizacaoExtrato extends Autorizacao {
+public class AutorizacaoExtrato extends AbstractAutorizacao {
 
     private List<Lancamento> lancamentos;
 

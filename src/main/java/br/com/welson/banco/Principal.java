@@ -1,6 +1,6 @@
 package br.com.welson.banco;
 
-import br.com.welson.banco.autorizacao.Autorizacao;
+import br.com.welson.banco.autorizacao.AbstractAutorizacao;
 import br.com.welson.banco.autorizacao.StatusAutorizacao;
 import br.com.welson.banco.autorizador.AbstractAutorizador;
 import br.com.welson.banco.cliente.Cliente;
@@ -181,7 +181,7 @@ public class Principal {
 
     private void executa(AbstractTransacao transacao) {
         transacao.setCanal(Canal.AGENCIA);
-        Autorizacao autorizacao = factory.criaNovaInstacia(transacao.getTipoTransacao()).executa(transacao);
+        AbstractAutorizacao autorizacao = factory.criaNovaInstacia(transacao.getTipoTransacao()).executa(transacao);
 
         if (autorizacao.getStatusAutorizacao() == StatusAutorizacao.CONFIRMADA) {
             JOptionPane.showMessageDialog(null, "Transação realizada com sucesso!\n\n" + autorizacao.toString());

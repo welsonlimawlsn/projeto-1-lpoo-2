@@ -3,7 +3,7 @@ package br.com.welson.banco.autorizacao;
 import br.com.welson.banco.comum.AbstractEntity;
 import br.com.welson.banco.transacao.AbstractTransacao;
 
-public abstract class Autorizacao extends AbstractEntity<Integer> {
+public abstract class AbstractAutorizacao extends AbstractEntity<Integer> {
 
     private Integer nsu;
     private Integer agencia;

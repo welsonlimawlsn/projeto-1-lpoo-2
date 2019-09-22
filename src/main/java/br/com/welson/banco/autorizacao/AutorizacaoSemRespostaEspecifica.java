@@ -8,5 +8,5 @@ import br.com.welson.banco.transacao.Transacao;
         TipoTransacao.DEPOSITO,
         TipoTransacao.TRANSFERENCIA_ENTRE_CONTAS
 })
-public class AutorizacaoSemRespostaEspecifica extends Autorizacao {
+public class AutorizacaoSemRespostaEspecifica extends AbstractAutorizacao {
 }

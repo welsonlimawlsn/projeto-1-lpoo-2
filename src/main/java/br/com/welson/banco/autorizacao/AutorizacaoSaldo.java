@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.text.NumberFormat;
 
 @Transacao(TipoTransacao.SALDO)
-public class AutorizacaoSaldo extends Autorizacao {
+public class AutorizacaoSaldo extends AbstractAutorizacao {
 
     private BigDecimal saldo;
 

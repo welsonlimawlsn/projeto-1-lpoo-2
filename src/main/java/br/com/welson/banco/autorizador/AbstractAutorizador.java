@@ -1,6 +1,6 @@
 package br.com.welson.banco.autorizador;
 
-import br.com.welson.banco.autorizacao.Autorizacao;
+import br.com.welson.banco.autorizacao.AbstractAutorizacao;
 import br.com.welson.banco.autorizacao.AutorizacaoDAO;
 import br.com.welson.banco.autorizacao.StatusAutorizacao;
 import br.com.welson.banco.cliente.ClienteDAO;
@@ -16,7 +16,7 @@ import static br.com.welson.banco.di.DI.injeta;
 
 public abstract class AbstractAutorizador {
 
-    private final static Factory<Autorizacao> AUTORIZACAO_FACTORY = new Factory<>(Autorizacao.class);
+    private final static Factory<AbstractAutorizacao> AUTORIZACAO_FACTORY = new Factory<>(AbstractAutorizacao.class);
 
     private AutorizacaoDAO autorizacaoDAO = injeta(AutorizacaoDAO.class);
     private ContaDAO contaDAO = injeta(ContaDAO.class);
@@ -24,9 +24,9 @@ public abstract class AbstractAutorizador {
 
     private ContaService contaService = DI.injeta(ContaService.class);
 
-    public Autorizacao executa(AbstractTransacao transacao) {
+    public AbstractAutorizacao executa(AbstractTransacao transacao) {
 
-        Autorizacao autorizacao = AUTORIZACAO_FACTORY.criaNovaInstacia(transacao.getTipoTransacao());
+        AbstractAutorizacao autorizacao = AUTORIZACAO_FACTORY.criaNovaInstacia(transacao.getTipoTransacao());
 
         autorizacaoDAO.insere(autorizacao);
 
@@ -49,7 +49,7 @@ public abstract class AbstractAutorizador {
         return autorizacao;
     }
 
-    protected abstract void executaRegrasEspecificas(AbstractTransacao transacao, Autorizacao autorizacao) throws NegocioException;
+    protected abstract void executaRegrasEspecificas(AbstractTransacao transacao, AbstractAutorizacao autorizacao) throws NegocioException;
 
     protected Conta getContaCliente(AbstractTransacao transacao) throws NegocioException {
         return contaService.procuraPorAgenciaNumero(transacao.getAgencia(), transacao.getNumero());

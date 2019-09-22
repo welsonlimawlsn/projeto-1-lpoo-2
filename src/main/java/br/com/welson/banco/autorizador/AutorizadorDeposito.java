@@ -1,6 +1,6 @@
 package br.com.welson.banco.autorizador;
 
-import br.com.welson.banco.autorizacao.Autorizacao;
+import br.com.welson.banco.autorizacao.AbstractAutorizacao;
 import br.com.welson.banco.conta.Conta;
 import br.com.welson.banco.exception.NegocioException;
 import br.com.welson.banco.lancamento.Lancamento;
@@ -13,7 +13,7 @@ import br.com.welson.banco.transacao.TransacaoFinanceira;
 public class AutorizadorDeposito extends AbstractAutorizador {
 
     @Override
-    protected void executaRegrasEspecificas(AbstractTransacao transacao, Autorizacao autorizacao) throws NegocioException {
+    protected void executaRegrasEspecificas(AbstractTransacao transacao, AbstractAutorizacao autorizacao) throws NegocioException {
         TransacaoFinanceira transacaoFinanceira = (TransacaoFinanceira) transacao;
         Conta conta = getContaCliente(transacao);
         Lancamento lancamento = conta.credita(transacaoFinanceira.getValor());
